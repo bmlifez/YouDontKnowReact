@@ -1,0 +1,39 @@
+.header {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.left-panel{
+    display: flex;
+    li {
+        list-style: none;
+        padding: 10px;
+    }
+}
+
+.right-panel{
+    padding-left: 6%;
+    .inlineStyleContainer {
+        padding: 20px;
+        .inputBox {
+            padding: 10px;
+            border-style: none;
+            margin: 15px;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    align-items: baseline;
+}
+
+.widthHeight {
+    width: 400px;
+    height: 500px;
+}
