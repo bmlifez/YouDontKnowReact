@@ -1,6 +1,9 @@
-import React from 'react';
-import {COMPONENT_CONSTANT,COMPONENT_LABEL,COMPONENT_VARIABLE,THOUGHT_OF_THE_DAY} from '../../constant/constant';
-import Modal from '../../common/Modal/modal';
+import  React               from 'react';
+import {COMPONENT_CONSTANT,
+        COMPONENT_LABEL,
+        COMPONENT_VARIABLE,
+        THOUGHT_OF_THE_DAY} from '../../constant/home/home.constant';
+import  Modal               from '../../common/modal/component/modal';
 import './home.scss';
 
 export default class home extends React.Component {
@@ -9,8 +12,8 @@ export default class home extends React.Component {
         this.state = {
             componentList:[COMPONENT_CONSTANT.MODAL],
             activeComponentIndex:null,
-            ModalConfig: [],
-            InlineStyle:{
+            modalConfig: [],
+            inlineStyle:{
                 height: '600px',
                 width: '500px'
             }
@@ -24,33 +27,36 @@ export default class home extends React.Component {
     }
 
     addModal=()=>{
-        const {ModalConfig,InlineStyle} = this.state;
-        let length = ModalConfig.length;
+        const {modalConfig,inlineStyle} = this.state;
+        let length = modalConfig.length;
         let configuration = {
             heading:`Modal ${length+1}`,
             style: {
-                width: InlineStyle.width,
-                height:InlineStyle.height 
+                width: inlineStyle.width,
+                height:inlineStyle.height 
             }
         }
-        ModalConfig.push(configuration);
+        modalConfig.push(configuration);
         this.setState({
-            ModalConfig
+            modalConfig
         })
     }
 
     updateInlineStyle=(e,inlineStyleType)=>{
+        const{inlineStyle}=this.state;
         switch(inlineStyleType){
             case COMPONENT_VARIABLE.HEIGHT:
                 this.setState({
-                    InlineStyle:{
-                        height:e.target.value
+                    inlineStyle:{
+                        height:e.target.value,
+                        width: inlineStyle.width
                     }
                 })
                 break;
             case COMPONENT_VARIABLE.WIDTH:
                 this.setState({
-                    InlineStyle:{
+                    inlineStyle:{
+                        height:inlineStyle.height,
                         width:e.target.value
                     }
                 })
@@ -61,18 +67,18 @@ export default class home extends React.Component {
     }
 
     generatedBody=(component)=>{
-        const {InlineStyle}=this.state
+        const {inlineStyle}=this.state
         switch (component){
             case null:
                 return;
             case COMPONENT_CONSTANT.MODAL:
                 return (
                     <div>
-                        <button className="pointer" onClick={()=> this.addModal()}>Launch New Modal</button>
+                        <button className="pointer button-rp" onClick={()=> this.addModal()}>Launch New Modal</button>
                         <div className="inlineStyleContainer">
                             <label>{COMPONENT_LABEL.STYLE_LABEL}</label>
-                            <input className="inputBox" type='text' value={InlineStyle.height} onChange={(e)=> this.updateInlineStyle(e,COMPONENT_VARIABLE.HEIGHT)} placeholder={COMPONENT_LABEL.HEIGHT} />
-                            <input className="inputBox" type='text' value={InlineStyle.width}  onChange={(e)=> this.updateInlineStyle(e,COMPONENT_VARIABLE.WIDTH)}  placeholder={COMPONENT_LABEL.WIDTH} />
+                            <input className="inputBox" type='text' value={inlineStyle.height || ''} onChange={(e)=> this.updateInlineStyle(e,COMPONENT_VARIABLE.HEIGHT)} placeholder={COMPONENT_LABEL.HEIGHT} />
+                            <input className="inputBox" type='text' value={inlineStyle.width  || ''}  onChange={(e)=> this.updateInlineStyle(e,COMPONENT_VARIABLE.WIDTH)}  placeholder={COMPONENT_LABEL.WIDTH} />
                         </div>
                     </div>
                 )
@@ -85,25 +91,28 @@ export default class home extends React.Component {
     }
 
     cancelClickCallback=(idx)=>{
-        const {ModalConfig}=this.state
-        ModalConfig.splice(idx,1);
-        this.setState({
-            ModalConfig
-        })
+        const {modalConfig}=this.state
+        if(modalConfig.length>0){
+            modalConfig.pop();
+            this.setState({
+                modalConfig
+            })  
+        }
     }
 
     generateModalBody=()=>{
         let text = THOUGHT_OF_THE_DAY[Math.floor(Math.random() * THOUGHT_OF_THE_DAY.length)]
         return (
             <div>
+                <h4>Random Thoughts :</h4>
                 <p>{text}</p>
             </div>
         )
     }
 
     render() {
-        const {componentList,activeComponentIndex,ModalConfig} = this.state
-        const rightPanel = this.generatedBody(componentList[activeComponentIndex])
+        const {componentList,modalConfig} = this.state
+        const rightPanel = this.generatedBody(COMPONENT_CONSTANT.MODAL)
         return (
             <React.Fragment>
                 <div className="header text">
@@ -125,7 +134,7 @@ export default class home extends React.Component {
                     </section>
                     <section className="right-panel">
                         {rightPanel}
-                        {ModalConfig.length>0 && ModalConfig.map((modal,index)=>{
+                        {modalConfig.length>0 && modalConfig.map((modal,index)=>{
                             return(
                                 <Modal
                                 heading= {modal.heading}
@@ -149,7 +158,6 @@ export default class home extends React.Component {
                                 />
                             )
                         })}
-                        
                     </section>
                 </div>
             </React.Fragment>

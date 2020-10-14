@@ -28,12 +28,12 @@ export default class Modal extends React.PureComponent {
             return (
                 <div className='modalFooter default'>
                     {primaryBtn && primaryBtn.show && (
-                        <button type='button' className='primary-btn block-btn' {...primaryBtn}>
+                        <button type='button' className='primary-btn' {...primaryBtn}>
                             {primaryBtn.text || 'Save'}
                         </button>
                     )}
                     {secondaryBtn && secondaryBtn.show && (
-                        <button type='button' className='secondary-btn noBorderBtn' {...secondaryBtn}>
+                        <button type='button' className='secondary-btn' {...secondaryBtn}>
                             {secondaryBtn.text || 'Cancel'}
                         </button>
                     )}

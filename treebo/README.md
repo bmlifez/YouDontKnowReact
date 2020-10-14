@@ -1,6 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Treebo Assignement
+## Treebo
+
+How to run this project.
+
+1. Clone the Repo on your system 
+2. Make sure you have npm installed on your system 10.6 or higher
+3. npm start will start the project
+4. By default project will run on localhost port 3000 make sure it is empty
+5. Click on modal on the left hand side to open the project
 
 ## Available Scripts
 

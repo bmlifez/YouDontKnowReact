@@ -1,5 +1,7 @@
 .modal-overlay {
     z-index: 999999;
+    position: relative;
+    left: 25%;
 }
 
 .modalContainer {
@@ -8,6 +10,7 @@
     min-height: 300px;
     display: flex;
     flex-direction: column;
+    position: absolute;
     background-color: #FFF;
 
     .modalHeader {
@@ -62,5 +65,25 @@
             display: flex;
             justify-content: flex-end;
         }
+    }
+
+    .primary-btn{
+        padding: 10px;
+        color: #fff;
+        background-color: #0074d9;
+        border-radius: 3px;
+        margin: 10px;
+        width: 25%;
+        cursor: pointer;
+    }
+
+    .secondary-btn{
+        padding: 10px;
+        color: #fff;
+        background-color: #E54065;
+        border-radius: 3px;
+        margin: 10px;
+        width: 25%;
+        cursor: pointer;
     }
 }

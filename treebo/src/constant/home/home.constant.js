@@ -3,7 +3,7 @@ export const COMPONENT_CONSTANT = {
 }
 
 export const COMPONENT_LABEL = {
-    STYLE_LABEL : 'PLEASE ENTER THE MODAL HEIGHT AND WIDTH',
+    STYLE_LABEL: 'PLEASE ENTER THE MODAL HEIGHT AND WIDTH',
     WIDTH: 'Please Enter Width (px)',
     HEIGHT: 'Please Enter Height (px)'
 }
