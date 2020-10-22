@@ -1,0 +1,42 @@
+.header {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.left-panel{
+    display: flex;
+    li {
+        list-style: none;
+        padding: 10px;
+    }
+}
+
+.right-panel{
+    .inlineStyleContainer {
+        padding: 20px;
+        .inputBox {
+            padding: 10px;
+            border-style: none;
+            margin: 15px;
+        }
+    }
+    .button-rp{
+        position: relative;
+        right: 40%;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    align-items: baseline;
+}
+
+.widthHeight {
+    width: 400px;
+    height: 500px;
+}

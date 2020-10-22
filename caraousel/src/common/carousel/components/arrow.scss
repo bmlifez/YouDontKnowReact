@@ -1,0 +1,23 @@
+.slider-controls {
+    top: 50%;
+    transform: translateY(-50%);
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 100px;
+    cursor: pointer;
+    z-index: 9;
+    
+}
+
+.left {
+    left: 5%;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+img {
+    width: 20%;
+}
