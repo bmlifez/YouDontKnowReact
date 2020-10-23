@@ -5,15 +5,15 @@ class Slide extends Component {
   constructor(props) {
     super(props);
   }
- 
+
   render() {
-    const {landingData,width,height,activeIndex} = this.props;
+    const {landingData,width,height,activeIndex,sliderCallback} = this.props;
     return(
       <section>
       {
         landingData && landingData.map((data, index) =>{
           return (
-            <div className={
+            <div onClick={sliderCallback} className={
               index === activeIndex ? 'active' : 'slide'}
               key={index}>
                 <img src={localStorage.getItem(`${data}`)}  style={{width:`${width}`,height:`${height}`}}/>

@@ -2,7 +2,7 @@ import  React               from 'react';
 import {COMPONENT_CONSTANT,
         COMPONENT_LABEL,
         COMPONENT_VARIABLE,
-        THOUGHT_OF_THE_DAY} from '../../constant/home/home.constant';
+        }                   from '../../constant/home/home.constant';
 import  Modal               from '../../common/modal/component/modal';
 import  ImgageUploader      from '../../common/Imageuploader/component/Imageuploader';
 import  Slider              from '../../common/carousel/components/slider';
@@ -14,12 +14,14 @@ export default class home extends React.Component {
         this.state = {
             componentList:[COMPONENT_CONSTANT.IMAGEUPLOADER],
             activeComponentIndex:null,
+            sliderCheck:false,
             slider:[],
             modalConfig: [],
             inlineStyle:{
                 height: '600px',
                 width: '500px'
-            }
+            },
+            imageActiveIndex:null
         };
     }
 
@@ -35,6 +37,12 @@ export default class home extends React.Component {
         }
         this.setState({
             slider: data
+        },()=>{
+            if(!this.state.sliderCheck){
+                this.setState({
+                    sliderCheck: true
+                })
+            }
         })
     }
 
@@ -109,6 +117,8 @@ export default class home extends React.Component {
                 return(
                     <ImgageUploader 
                         saveClickCallback={this.ImageUploaderSaveCallClickBack}
+                        alignClass={"alignLeft"}
+                        inpBoxClass={"inpBox"}
                     />
                 )
         }
@@ -129,14 +139,25 @@ export default class home extends React.Component {
     }
 
     generateModalBody=(idx)=>{
-        let text = THOUGHT_OF_THE_DAY[Math.floor(Math.random() * THOUGHT_OF_THE_DAY.length)]
+        const {imageActiveIndex}=this.state;
+        let data = localStorage.getItem('imageGallery');
+        let dataParse = JSON.parse(data);
+        let key = dataParse[imageActiveIndex]
         return (
-            <img src="" />
+            <img src={localStorage.getItem(`${key}`)}  style={{width:`470px`,height:`400px`,padding:`10px`}}/>
         )
     }
 
+    updateModalConfig=(idx)=>{
+        this.setState({
+            imageActiveIndex:idx
+        },()=>{
+            this.addModal();
+        })
+    }
+
     render() {
-        const {componentList,modalConfig,slider} = this.state
+        const {componentList,modalConfig,slider,sliderCheck} = this.state
         const rightPanel = this.generatedBody(COMPONENT_CONSTANT.IMAGEUPLOADER)
         return (
             <React.Fragment>
@@ -159,9 +180,10 @@ export default class home extends React.Component {
                     </section>
                     <section className="right-panel">
                         {rightPanel}
-                        {slider && slider.length>0 && <Slider 
+                        {slider && slider.length>0 && sliderCheck&& <Slider 
                             landingData={slider}
                             length={slider.length}
+                            updateActiveIndex={this.updateModalConfig}
                         /> }
                         {modalConfig.length>0 && modalConfig.map((modal,index)=>{
                             return(

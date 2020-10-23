@@ -13,6 +13,13 @@
 }
 
 .right-panel{
+    .alignLeft{
+        text-align: left;
+    }
+    .inpBox{
+        position: absolute;
+        display: block;
+    }
     .inlineStyleContainer {
         padding: 20px;
         .inputBox {

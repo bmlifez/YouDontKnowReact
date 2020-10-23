@@ -5,7 +5,7 @@ class LeftArrow extends Component {
     const {goToPrevSlide}=this.props;
     return(
       <div className="slider-controls left" onClick={goToPrevSlide}>
-        <img draggable="false" src="https://assets.airtel.in/static-assets/new-home/img/arrow.svg?v=1602752073093" alt="arrow" />
+        <img draggable="false" src={require('../resources/arrow.svg')} alt="arrow" />
       </div>
     )
   }

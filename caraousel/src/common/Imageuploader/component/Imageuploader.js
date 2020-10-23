@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ImgageUploader = props => {
+    const {customWrapperClass,alignClass,inpBoxClass}=props;
+
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -30,9 +32,9 @@ const ImgageUploader = props => {
     };
 
     return (
-        <div className={props.customWrapperClass}>
-            <h2>{props.heading || 'Upload Image'}</h2>
-            <input type="file" placeholder={props.placeholder} onChange={imageUpload} />
+        <div className={customWrapperClass}>
+            <p className={alignClass}>{props.heading || 'Upload Image'}</p>
+            <input type="file" className={inpBoxClass} placeholder={props.placeholder} onChange={imageUpload} />
         </div>
     );
 };
